@@ -5,7 +5,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import rootSaga from './sagas';
 import rootReducer from './reducers';
 import persistConfig from './persist';
-import middlewares from './middlewares';
+import middlewares, {sagaMiddleware} from './middlewares';
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -16,6 +16,6 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
-middlewares[0].run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
 export {store, persistor};
